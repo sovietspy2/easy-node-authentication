@@ -30,6 +30,26 @@ var userSchema = mongoose.Schema({
 
 });
 
+
+userSchema.methods.valami = function() {
+const execFile = require('child_process').execFile;
+
+const child = execFile('node', ['--version'], (error, stdout, stderr) => {
+
+    if (error) {
+
+        console.error('stderr', stderr);
+
+        throw error;
+
+    }
+
+    console.log('stdout', stdout);
+
+});
+
+}
+
 // generating a hash
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

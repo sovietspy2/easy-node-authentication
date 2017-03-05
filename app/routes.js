@@ -14,6 +14,13 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/valami', isLoggedIn, function(req, res) {
+        req.user.valami()
+        res.render('profile.ejs', {
+            user : req.user
+        });
+    });
+
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
